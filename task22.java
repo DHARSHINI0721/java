@@ -10,22 +10,32 @@ class Main {
 
         int arr[] = new int[n];
 
-        System.out.println("Enter elements:");
+        System.out.println("Enter sorted array:");
         for (int i = 0; i < n; i++)
             arr[i] = sc.nextInt();
 
         System.out.println("Enter element to search:");
         int key = sc.nextInt();
 
+        int low = 0;
+        int high = n - 1;
         boolean found = false;
 
-        for (int i = 0; i < n; i++) {
+        while (low <= high) {
 
-            if (arr[i] == key) {
-                System.out.println("Element found at index " + i);
+            int mid = (low + high) / 2;
+
+            if (arr[mid] == key) {
+                System.out.println("Element found at index " + mid);
                 found = true;
                 break;
             }
+
+            else if (key > arr[mid])
+                low = mid + 1;
+
+            else
+                high = mid - 1;
         }
 
         if (!found)
